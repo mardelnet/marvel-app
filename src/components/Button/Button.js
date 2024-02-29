@@ -1,7 +1,6 @@
-import styles from './Button.module.scss';
+import styles from './Button.module.scss'
 
 function Button({ buttonLabel, icon, onClick }) {
-
   return (
     <button className='button' onClick={onClick}>
       {buttonLabel}
@@ -9,7 +8,7 @@ function Button({ buttonLabel, icon, onClick }) {
         <img className={styles['button__icon']} src={icon} alt={buttonLabel} />
       )}
     </button>
-  );
+  )
 }
 
-export default Button;
+export default Button

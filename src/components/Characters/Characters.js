@@ -1,24 +1,21 @@
-
-import styles from './Characters.module.scss';
-import SingleCharacter from './SingleCharacter';
+import styles from './Characters.module.scss'
+import SingleCharacter from './SingleCharacter'
 
 function Characters({ characters }) {
-
   return (
-      characters && (
+    characters && (
       <div className={styles.container}>
-        {characters.map(item => (
-          <SingleCharacter 
+        {characters.map((item) => (
+          <SingleCharacter
             name={item.name}
             description={item.description}
             extraInfoLink={item.urls[0].url}
             imageUrl={`${item.thumbnail.path}.${item.thumbnail.extension}`}
-          >    
-          </SingleCharacter>
+          ></SingleCharacter>
         ))}
       </div>
     )
-  );
+  )
 }
 
-export default Characters;
+export default Characters

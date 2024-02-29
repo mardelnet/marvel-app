@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './Characters.module.scss';
-import SingleCharacter from './SingleCharacter.tsx';
+import styles from './MultipleCharacters.module.scss';
+import SingleCharacter from '../Single/SingleCharacter.tsx';
 
 interface Character {
   id: number;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Characters.module.scss';
+import SingleCharacter from './SingleCharacter';
 
 function Character() {
   const [data, setData] = useState(null);
@@ -52,29 +53,20 @@ function Character() {
       });
   }, []);
 
-  const filterDescription = (text) => {
-    return text.length > 101 ? text.substring(0, 101) + '...' : text;
-  }
-
   return (
-    <div>
-      {data && (
+      data && (
       <div className={styles.container}>
         {data.data.results.map(item => (
-          <div className={styles.item} key={item.id}>
-            <img src={`${item.thumbnail.path}.${item.thumbnail.extension}`} alt={'altText'} />
-            <div className={styles.description}>
-              <h3>{item.name}</h3>
-              <div>{item.description ? filterDescription(item.description) : '(No description available)'}</div>
-              <a href={item.urls[0].url} target='_blank' rel="noreferrer">
-                Read more
-              </a>
-            </div>
-          </div>
+          <SingleCharacter 
+            name={item.name}
+            description={item.description}
+            extraInfoLink={item.urls[0].url}
+            imageUrl={`${item.thumbnail.path}.${item.thumbnail.extension}`}
+          >    
+          </SingleCharacter>
         ))}
       </div>
-    )}
-    </div>
+    )
   );
 }
 

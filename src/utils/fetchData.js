@@ -1,9 +1,8 @@
+import { privateKey, apiKey, baseUrl, endpoints} from '../constants/marvelApi';
+
 export const getAllCharacters = async () => {
   const md5 = require('md5');
 
-  // Your API credentials
-  const apiKey = 'b5d566cf249c2b1c34d8199b3e7b17d1';
-  const privateKey = '2f24398f5a8c822633e65df8946dff98902bc076';
   const ts = new Date().getTime(); // timestamp
 
   // Generating hash
@@ -17,7 +16,7 @@ export const getAllCharacters = async () => {
   };
 
   // Constructing URL with query parameters
-  const url = new URL('http://gateway.marvel.com/v1/public/characters?limit=6');
+  const url = new URL(`${baseUrl}${endpoints['characters']}?limit=6`);
   Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
   // Request headers

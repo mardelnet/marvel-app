@@ -7,15 +7,29 @@ function App() {
 
   const [characters, setCharacters] = useState([]);
   const [offsetOfCharacters, setOffsetOfCharacters] = useState(0);
-
+  
+  const loadInitialCharacters = async () => {
+    try {
+      const newCharacters = await getCharacters(limitOfCharacters, offsetOfCharacters);
+      setCharacters(newCharacters.data.results);
+      setOffsetOfCharacters(prevOffset => prevOffset + limitOfCharacters);
+    } catch(error) {
+      console.error(error);
+    }
+  };
+  
   const loadMoreCharacters = async () => {
-    const newCharacters = await getCharacters(limitOfCharacters, offsetOfCharacters);
-    setCharacters(prevCharacters => [...prevCharacters, ...newCharacters.data.results]);
-    setOffsetOfCharacters(prevOffset => prevOffset + limitOfCharacters);
+    try {
+      const newCharacters = await getCharacters(limitOfCharacters, offsetOfCharacters);
+      setCharacters(prevCharacters => [...prevCharacters, ...newCharacters.data.results]);
+      setOffsetOfCharacters(prevOffset => prevOffset + limitOfCharacters);
+    } catch(error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
-    loadMoreCharacters();
+    loadInitialCharacters();
   }, []); // Load characters when component mounts
 
   return (

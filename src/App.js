@@ -1,9 +1,21 @@
-import Character from './components/Characters/Characters';
+import React, { useState, useEffect } from 'react';
+import { getAllCharacters } from './utils/fetchData';
+import Characters from './components/Characters/Characters';
 
 function App() {
+  const [characters, setCharacters] = useState(null);
+
+  useEffect(() => {
+    const setChars = async () => {
+      const characters = await getAllCharacters();
+      setCharacters(characters);
+    }
+    setChars();
+  }, []);
+
   return (
     <div className='container'>
-      <Character></Character>
+      <Characters characters={characters}></Characters>
     </div>
   );
 }

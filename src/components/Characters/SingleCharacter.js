@@ -1,3 +1,4 @@
+import Button from '../Button/Button';
 import styles from './SingleCharacters.module.scss';
 
 function SingleCharacter(props) {
@@ -9,13 +10,11 @@ function SingleCharacter(props) {
   return (
     <div>
       <div className={styles.item}>
-        <img src={props.imageUrl} alt={'altText'} />
+        <img className={styles.image} src={props.imageUrl} alt={'altText'} />
         <div className={styles.description}>
           <h3>{props.name}</h3>
           <div>{props.description ? filterDescription(props.description) : '(No description available)'}</div>
-          <a href={props.extraInfoLink} target='_blank' rel="noreferrer">
-            Read more
-          </a>
+          <Button buttonLabel="Read more" link={props.extraInfoLink} icon="/icon_arrow.svg"></Button>
         </div>
       </div>
     </div>

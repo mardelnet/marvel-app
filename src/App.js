@@ -5,7 +5,7 @@ import { getCharacters } from './utils/fetchData';
 import Characters from './components/Characters/Characters';
 import Footer from './components/Footer/Footer';
 import SearchForm from './components/SearchForm/SearchForm';
-import LoadMore from './components/LoadMore/LoadMore';
+import Button from './components/Button/Button';
 import Loader from './components/Loader/Loader';
 
 function App() {
@@ -56,7 +56,7 @@ function App() {
       )}
       
       {!isLoading && (
-        <LoadMore onClick={getMarvelCharacters} />
+        <Button buttonLabel="Load More" onClick={getMarvelCharacters} />
       )}
 
       <Footer />

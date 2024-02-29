@@ -1,20 +1,7 @@
-import React from 'react';
-import { getCharacters } from '../../utils/fetchData';
-
-function LoadMore({ onLoadMore, limitOfCharacters, offsetOfCharacters, setOffsetOfCharacters }) {
-
-  const loadMoreCharacters = async () => {
-    try {
-      const newCharacters = await getCharacters(limitOfCharacters, offsetOfCharacters);
-      setOffsetOfCharacters(prevOffset => prevOffset + limitOfCharacters);
-      onLoadMore(newCharacters.data.results);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+function LoadMore({ onClick }) {
 
   return (
-    <button className='button' onClick={loadMoreCharacters}>
+    <button className='button' onClick={onClick}>
       Load More
     </button>
   );

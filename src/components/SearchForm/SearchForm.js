@@ -3,14 +3,16 @@ import { getSingleCharacter } from '../../utils/fetchData';
 import styles from './SearchForm.module.scss';
 import MySVG from './icon_search.svg';
 
-function SearchForm({ onSearch }) {
+function SearchForm({ onSearch, setIsLoading }) {
   const [textInput, setTextInput] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      setIsLoading(true)
       const newCharacters = await getSingleCharacter(textInput);
       onSearch(newCharacters.data.results);
+      setIsLoading(false)
     } catch (error) {
       console.error(error);
     }

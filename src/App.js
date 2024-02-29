@@ -1,43 +1,65 @@
 // App.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getCharacters } from './utils/fetchData';
+
 import Characters from './components/Characters/Characters';
 import Footer from './components/Footer/Footer';
 import SearchForm from './components/SearchForm/SearchForm';
 import LoadMore from './components/LoadMore/LoadMore';
+import Loader from './components/Loader/Loader';
 
 function App() {
   const limitOfCharacters = 6;
   const [characters, setCharacters] = useState([]);
   const [offsetOfCharacters, setOffsetOfCharacters] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleSearch = (searchResults) => {
     setCharacters(searchResults);
     setOffsetOfCharacters(0); // Reset offset for search results
   };
-  
-  const loadInitialCharacters = (searchResults) => {
-    setCharacters(searchResults);
-  };
-  
-  const loadMoreCharacters = (searchResults) => {
-    setCharacters(prevCharacters => [...prevCharacters, ...searchResults]);
-  };
+
+  const getMarvelCharacters = async () => {
+    try {
+      setIsLoading(true)
+      const charactersData = await getCharacters(limitOfCharacters, offsetOfCharacters);
+      const charactersList = charactersData.data.results;
+
+      if (characters.length === 0) {
+        setCharacters(charactersList);
+      } else {
+        setCharacters(prevCharacters => [...prevCharacters, ...charactersList]);
+      }
+      
+      setOffsetOfCharacters(prevOffset => prevOffset + limitOfCharacters);
+      setIsLoading(false)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    getMarvelCharacters();
+  }, []); // Load characters when component mounts
 
   return (
     <div className='container'>
-      <SearchForm onSearch={handleSearch} />
-      <Characters
-        onLoadMore={loadInitialCharacters} 
-        limitOfCharacters={limitOfCharacters}
-        offsetOfCharacters={offsetOfCharacters}  
-        setOffsetOfCharacters={setOffsetOfCharacters}
-        characters={characters} />
-      <LoadMore 
-        onLoadMore={loadMoreCharacters} 
-        limitOfCharacters={limitOfCharacters}
-        offsetOfCharacters={offsetOfCharacters}  
-        setOffsetOfCharacters={setOffsetOfCharacters} />
-      <Footer></Footer>
+      
+      {isLoading && <Loader />}
+
+      <SearchForm 
+        onSearch={handleSearch}
+        setIsLoading={setIsLoading} />
+
+      {characters && (
+        <Characters characters={characters} />
+      )}
+      
+      {!isLoading && (
+        <LoadMore onClick={getMarvelCharacters} />
+      )}
+
+      <Footer />
     </div>
   );
 }

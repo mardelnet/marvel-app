@@ -1,3 +1,4 @@
+import React from 'react'
 import Button from '../Button/Button'
 import styles from './SingleCharacters.module.scss'
 

@@ -1,6 +1,5 @@
 // App.js
-import React, { useState, useEffect } from 'react';
-import { getCharacters } from './utils/fetchData';
+import React, { useState } from 'react';
 import Characters from './components/Characters/Characters';
 import Footer from './components/Footer/Footer';
 import SearchForm from './components/SearchForm/SearchForm';
@@ -11,25 +10,15 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const [offsetOfCharacters, setOffsetOfCharacters] = useState(0);
 
-  useEffect(() => {
-    const loadInitialCharacters = async () => {
-      try {
-        const newCharacters = await getCharacters(limitOfCharacters, offsetOfCharacters);
-        setCharacters(newCharacters.data.results);
-        setOffsetOfCharacters(prevOffset => prevOffset + limitOfCharacters);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    
-    loadInitialCharacters();
-  }, []); // Load characters when component mounts
-
   const handleSearch = (searchResults) => {
     setCharacters(searchResults);
     setOffsetOfCharacters(0); // Reset offset for search results
   };
-
+  
+  const loadInitialCharacters = (searchResults) => {
+    setCharacters(searchResults);
+  };
+  
   const loadMoreCharacters = (searchResults) => {
     setCharacters(prevCharacters => [...prevCharacters, ...searchResults]);
   };
@@ -37,7 +26,12 @@ function App() {
   return (
     <div className='container'>
       <SearchForm onSearch={handleSearch} />
-      <Characters characters={characters}></Characters>
+      <Characters
+        onLoadMore={loadInitialCharacters} 
+        limitOfCharacters={limitOfCharacters}
+        offsetOfCharacters={offsetOfCharacters}  
+        setOffsetOfCharacters={setOffsetOfCharacters}
+        characters={characters} />
       <LoadMore 
         onLoadMore={loadMoreCharacters} 
         limitOfCharacters={limitOfCharacters}

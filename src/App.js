@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { getAllCharacters } from './utils/fetchData';
+import { getCharacters } from './utils/fetchData';
 import Characters from './components/Characters/Characters';
 
 function App() {
-  const [characters, setCharacters] = useState(null);
+  const [characters, setCharacters] = useState([]);
+  const [offsetOfCharacters, setOffsetOfCharacters] = useState(0);
+
+  const loadMoreCharacters = async () => {
+    const newCharacters = await getCharacters(6, offsetOfCharacters);
+    setCharacters(prevCharacters => [...prevCharacters, ...newCharacters.data.results]);
+    setOffsetOfCharacters(prevOffset => prevOffset + 6);
+  };
 
   useEffect(() => {
-    const setChars = async () => {
-      const characters = await getAllCharacters();
-      setCharacters(characters);
-    }
-    setChars();
-  }, []);
+    loadMoreCharacters();
+  }, []); // Load characters when component mounts
 
   return (
     <div className='container'>
       <Characters characters={characters}></Characters>
+      <button onClick={loadMoreCharacters}>Load More</button>
     </div>
   );
 }

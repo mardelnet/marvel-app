@@ -1,6 +1,6 @@
 import { privateKey, apiKey, baseUrl, endpoints} from '../constants/marvelApi';
 
-export const getAllCharacters = async () => {
+export const getCharacters = async (limit, offset) => {
   const md5 = require('md5');
 
   const ts = new Date().getTime(); // timestamp
@@ -16,7 +16,7 @@ export const getAllCharacters = async () => {
   };
 
   // Constructing URL with query parameters
-  const url = new URL(`${baseUrl}${endpoints['characters']}?limit=6`);
+  const url = new URL(`${baseUrl}${endpoints['characters']}?limit=${limit}&offset=${offset}`);
   Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
   // Request headers

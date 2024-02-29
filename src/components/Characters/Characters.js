@@ -5,7 +5,7 @@ function Characters(props) {
   return (
       props.characters && (
       <div className={styles.container}>
-        {props.characters.data.results.map(item => (
+        {props.characters.map(item => (
           <SingleCharacter 
             name={item.name}
             description={item.description}

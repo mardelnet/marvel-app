@@ -1,0 +1,23 @@
+.searchform {
+  margin: 25px 0;
+
+  button {
+    border: 0;
+    background-color: red;
+    padding: 10px;
+
+    img {
+      fill: white;
+      width: 20px;
+      height: auto;
+    }
+  }
+
+  input {
+    border: 0;
+    width: 100%;
+    max-width: 500px;
+    font-size: 20px;
+    padding: 10px;
+  }
+}

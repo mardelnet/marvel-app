@@ -14,7 +14,9 @@ function LoadMore({ onLoadMore, limitOfCharacters, offsetOfCharacters, setOffset
   };
 
   return (
-    <button className='button' onClick={loadMoreCharacters}>Load More</button>
+    <button className='button' onClick={loadMoreCharacters}>
+      Load More
+    </button>
   );
 }
 

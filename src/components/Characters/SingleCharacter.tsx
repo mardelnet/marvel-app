@@ -1,11 +1,18 @@
-import React from 'react'
-import Button from '../Button/Button'
-import styles from './SingleCharacters.module.scss'
+import React from 'react';
+import Button from '../Button/Button.tsx';
+import styles from './SingleCharacters.module.scss';
 
-function SingleCharacter(props) {
-  const filterDescription = (text) => {
-    return text.length > 101 ? text.substring(0, 101) + '...' : text
-  }
+interface SingleCharacterProps {
+  imageUrl: string;
+  name: string;
+  description?: string;
+  extraInfoLink: string;
+}
+
+const SingleCharacter: React.FC<SingleCharacterProps> = (props) => {
+  const filterDescription = (text: string): string => {
+    return text.length > 101 ? text.substring(0, 101) + '...' : text;
+  };
 
   return (
     <div>
@@ -26,7 +33,7 @@ function SingleCharacter(props) {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SingleCharacter
+export default SingleCharacter;

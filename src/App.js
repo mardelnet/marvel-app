@@ -3,13 +3,15 @@ import { getCharacters } from './utils/fetchData';
 import Characters from './components/Characters/Characters';
 
 function App() {
+  const limitOfCharacters = 6;
+
   const [characters, setCharacters] = useState([]);
   const [offsetOfCharacters, setOffsetOfCharacters] = useState(0);
 
   const loadMoreCharacters = async () => {
-    const newCharacters = await getCharacters(6, offsetOfCharacters);
+    const newCharacters = await getCharacters(limitOfCharacters, offsetOfCharacters);
     setCharacters(prevCharacters => [...prevCharacters, ...newCharacters.data.results]);
-    setOffsetOfCharacters(prevOffset => prevOffset + 6);
+    setOffsetOfCharacters(prevOffset => prevOffset + limitOfCharacters);
   };
 
   useEffect(() => {
@@ -19,7 +21,7 @@ function App() {
   return (
     <div className='container'>
       <Characters characters={characters}></Characters>
-      <button onClick={loadMoreCharacters}>Load More</button>
+      <button className='button' onClick={loadMoreCharacters}>Load More</button>
     </div>
   );
 }

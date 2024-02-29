@@ -1,27 +1,8 @@
-import React, { useState } from 'react'
-import { getSingleCharacter } from '../../utils/fetchData'
+import React from 'react'
 import styles from './SearchForm.module.scss'
 import MySVG from './icon_search.svg'
 
-function SearchForm({ onSearch, setIsLoading }) {
-  const [textInput, setTextInput] = useState('')
-
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    try {
-      setIsLoading(true)
-      const newCharacters = await getSingleCharacter(textInput)
-      onSearch(newCharacters.data.results)
-      setIsLoading(false)
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  const handleInputChange = (event) => {
-    setTextInput(event.target.value)
-  }
-
+function SearchForm({ handleSubmit, handleInputChange, textInput }) {
   return (
     <div className={styles.searchform}>
       <h1>Search your character</h1>

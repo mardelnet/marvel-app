@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getCharacters } from './utils/fetchData';
 import Characters from './components/Characters/Characters';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const limitOfCharacters = 6;
@@ -36,6 +37,7 @@ function App() {
     <div className='container'>
       <Characters characters={characters}></Characters>
       <button className='button' onClick={loadMoreCharacters}>Load More</button>
+      <Footer></Footer>
     </div>
   );
 }

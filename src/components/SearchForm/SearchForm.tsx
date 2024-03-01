@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './SearchForm.module.scss'
-import MySVG from './icon_search.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
 /**
  * Props interface for the SearchForm component.
@@ -42,13 +43,13 @@ const SearchForm: React.FC<SearchFormProps> = ({
           type='text'
           id='textInput'
           name='textInput'
-          placeholder='Enter text here'
+          placeholder='Name of character'
           value={textInput}
           onChange={handleInputChange}
           required
         />
         <button type='submit'>
-          <img src={MySVG} alt='Description of SVG' />
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
       </form>
     </div>

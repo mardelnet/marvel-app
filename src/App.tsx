@@ -126,7 +126,7 @@ const App: React.FC = () => {
 
       {characters.length > 0 && <Characters characters={characters} />}
 
-      {characters.length === 0 && <p>No results...</p>}
+      {!isLoading && characters.length === 0 && <p>No results...</p>}
 
       {!isLoading && (
         <Button

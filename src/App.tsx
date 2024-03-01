@@ -7,6 +7,10 @@ import SearchForm from './components/SearchForm/SearchForm.tsx'
 import Button from './components/Button/Button.tsx'
 import Loader from './components/Loader/Loader.tsx'
 
+/**
+ * Interface representing the structure of a character object.
+ * @interface
+ */
 interface Character {
   id: number
   name: string
@@ -15,12 +19,20 @@ interface Character {
   thumbnail: { path: string; extension: string }
 }
 
+/**
+ * Interface representing the structure of characters data returned by API.
+ * @interface
+ */
 interface CharactersData {
   data: {
     results: Character[]
   }
 }
 
+/**
+ * Main application component.
+ * @component
+ */
 const App: React.FC = () => {
   const limitOfCharacters = 6
   const [characters, setCharacters] = useState<Character[]>([])
@@ -28,10 +40,15 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [textInput, setTextInput] = useState<string>('')
 
-  const getMarvelCharacters = async (search = false) => {
+  /**
+   * Function to fetch Marvel characters data from API.
+   * @param {boolean} search - Indicates if it's a search operation.
+   * @returns {void}
+   */
+  const getMarvelCharacters = async (search = false): Promise<void> => {
     try {
-      let charactersData: CharactersData
       setIsLoading(true)
+      let charactersData: CharactersData
 
       if (search) {
         charactersData = await getSingleCharacter(textInput)
@@ -65,18 +82,35 @@ const App: React.FC = () => {
     }
   }
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  /**
+   * Event handler for input change in search form.
+   * @param {React.ChangeEvent<HTMLInputElement>} event - The input change event.
+   * @returns {void}
+   */
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setTextInput(event.target.value)
   }
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  /**
+   * Event handler for form submission in search form.
+   * @param {React.FormEvent<HTMLFormElement>} event - The form submission event.
+   * @returns {void}
+   */
+  const handleSubmit = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     event.preventDefault()
     getMarvelCharacters(true)
   }
 
+  /**
+   * Load characters when component mounts.
+   */
   useEffect(() => {
     getMarvelCharacters()
-  }, []) // Load characters when component mounts
+  }, [])
 
   return (
     <div className='container'>

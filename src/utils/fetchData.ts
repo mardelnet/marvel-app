@@ -5,6 +5,12 @@ import {
   endpoints,
 } from '../constants/marvelApi.ts'
 
+/**
+ * Fetches characters from the Marvel Comics API.
+ * @param {number} limit - The maximum number of characters to retrieve.
+ * @param {number} offset - The offset for paginating the results.
+ * @returns {Promise} - A promise that resolves with the fetched data.
+ */
 export const getCharacters = async (limit: number, offset: number) => {
   const url = new URL(
     `${baseUrl}${endpoints['characters']}?limit=${limit}&offset=${offset}`
@@ -12,21 +18,29 @@ export const getCharacters = async (limit: number, offset: number) => {
   return getData(url)
 }
 
+/**
+ * Fetches a single character from the Marvel Comics API by name.
+ * @param {string} name - The name of the character to retrieve.
+ * @returns {Promise} - A promise that resolves with the fetched data.
+ */
 export const getSingleCharacter = async (name: string) => {
   const url = new URL(`${baseUrl}${endpoints['characters']}?name=${name}`)
   return getData(url)
 }
 
+/**
+ * Fetches data from the specified URL using the fetch API.
+ * @param {URL} url - The URL to fetch data from.
+ * @returns {Promise} - A promise that resolves with the fetched data.
+ */
 export const getData = async (url: URL) => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   const md5 = require('md5')
 
-  const ts = new Date().getTime() // timestamp
+  const ts = new Date().getTime()
 
-  // Generating hash
   const hash = md5(ts + privateKey + apiKey)
 
-  // Request parameters
   const params = {
     apikey: apiKey,
     ts: ts,
@@ -37,12 +51,10 @@ export const getData = async (url: URL) => {
     url.searchParams.append(key, params[key])
   )
 
-  // Request headers
   const headers = {
     Accept: '*/*',
   }
 
-  // Make GET request to Marvel Comics API using fetch
   try {
     const response = await fetch(url.toString(), {
       method: 'GET',

@@ -1,22 +1,30 @@
 import React, { useState, useEffect } from 'react'
-import { getCharacters, getSingleCharacter } from './utils/fetchData'
+import { getCharacters, getSingleCharacter } from './utils/fetchData.ts'
 
-import Characters from './components/Characters/Characters'
-import Footer from './components/Footer/Footer'
-import SearchForm from './components/SearchForm/SearchForm'
-import Button from './components/Button/Button'
-import Loader from './components/Loader/Loader'
+import Characters from './components/Characters/Characters.tsx'
+import Footer from './components/Footer/Footer.tsx'
+import SearchForm from './components/SearchForm/SearchForm.tsx'
+import Button from './components/Button/Button.tsx'
+import Loader from './components/Loader/Loader.tsx'
 
-function App() {
+interface Character {
+  id: number
+  name: string
+  description: string
+  urls: { url: string }[]
+  thumbnail: { path: string; extension: string }
+}
+
+const App: React.FC = () => {
   const limitOfCharacters = 6
-  const [characters, setCharacters] = useState([])
-  const [offsetOfCharacters, setOffsetOfCharacters] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
-  const [textInput, setTextInput] = useState('')
+  const [characters, setCharacters] = useState<Character[]>([])
+  const [offsetOfCharacters, setOffsetOfCharacters] = useState<number>(0)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [textInput, setTextInput] = useState<string>('')
 
   const getMarvelCharacters = async (search = false) => {
     try {
-      let charactersData = []
+      let charactersData: any[] = []
       setIsLoading(true)
 
       if (search) {
@@ -28,11 +36,9 @@ function App() {
         )
       }
 
-      const charactersList = charactersData.data.results
+      const charactersList: Character[] = charactersData.data.results
 
-      if (characters.length === 0) {
-        setCharacters(charactersList)
-      } else if (search) {
+      if (characters.length === 0 || search) {
         setCharacters(charactersList)
       } else {
         setCharacters((prevCharacters) => [
@@ -53,11 +59,11 @@ function App() {
     }
   }
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTextInput(event.target.value)
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     getMarvelCharacters(true)
   }
@@ -76,7 +82,7 @@ function App() {
         textInput={textInput}
       />
 
-      {characters && <Characters characters={characters} />}
+      {characters.length > 0 && <Characters characters={characters} />}
 
       {!isLoading && (
         <Button buttonLabel='Load More' onClick={getMarvelCharacters} />

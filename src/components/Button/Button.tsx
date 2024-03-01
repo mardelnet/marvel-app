@@ -1,7 +1,13 @@
 import React from 'react'
 import styles from './Button.module.scss'
 
-function Button({ buttonLabel, icon, onClick }) {
+interface ButtonProps {
+  buttonLabel: string
+  icon?: string
+  onClick?: () => void
+}
+
+function Button({ buttonLabel, icon, onClick }: ButtonProps) {
   return (
     <button className='button' onClick={onClick}>
       {buttonLabel}

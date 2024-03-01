@@ -1,8 +1,20 @@
 import React from 'react'
 import styles from './Characters.module.scss'
-import SingleCharacter from './SingleCharacter'
+import SingleCharacter from './SingleCharacter.tsx'
 
-function Characters({ characters }) {
+interface Character {
+  id: number
+  name: string
+  description: string
+  urls: { url: string }[]
+  thumbnail: { path: string; extension: string }
+}
+
+interface CharactersProps {
+  characters: Character[]
+}
+
+const Characters: React.FC<CharactersProps> = ({ characters }) => {
   return (
     characters && (
       <div className={styles.container}>
@@ -13,7 +25,7 @@ function Characters({ characters }) {
             description={item.description}
             extraInfoLink={item.urls[0].url}
             imageUrl={`${item.thumbnail.path}.${item.thumbnail.extension}`}
-          ></SingleCharacter>
+          />
         ))}
       </div>
     )

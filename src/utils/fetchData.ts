@@ -1,18 +1,19 @@
 import { privateKey, apiKey, baseUrl, endpoints } from '../constants/marvelApi'
 
-export const getCharacters = async (limit, offset) => {
+export const getCharacters = async (limit: number, offset: number) => {
   const url = new URL(
     `${baseUrl}${endpoints['characters']}?limit=${limit}&offset=${offset}`
   )
   return getData(url)
 }
 
-export const getSingleCharacter = async (name) => {
+export const getSingleCharacter = async (name: string) => {
   const url = new URL(`${baseUrl}${endpoints['characters']}?name=${name}`)
   return getData(url)
 }
 
-export const getData = async (url) => {
+export const getData = async (url: URL) => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const md5 = require('md5')
 
   const ts = new Date().getTime() // timestamp
@@ -38,7 +39,10 @@ export const getData = async (url) => {
 
   // Make GET request to Marvel Comics API using fetch
   try {
-    const response = await fetch(url, { method: 'GET', headers: headers })
+    const response = await fetch(url.toString(), {
+      method: 'GET',
+      headers: headers,
+    })
 
     if (!response.ok) {
       throw new Error('Network response was not ok')

@@ -1,6 +1,9 @@
 import { getData } from './fetchData.ts'
 import { baseUrl, endpoints } from '../constants/marvelApi'
 
+// Define the environment variable
+process.env.REACT_APP_MARVEL_API_SECRET = 'your_secret_key'
+
 // Mock fetch function
 global.fetch = jest.fn(() =>
   Promise.resolve({

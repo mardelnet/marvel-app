@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getCharacters, getSingleCharacter } from './utils/fetchData'
 
-import Characters from './components/Characters/Multiple/MultipleCharacters.tsx'
+import Characters from './components/Characters/Characters.tsx'
 import Footer from './components/Footer/Footer.tsx'
 import SearchForm from './components/SearchForm/SearchForm.tsx'
 import Button from './components/Button/Button.tsx'

@@ -33,12 +33,13 @@ const Characters: React.FC<CharactersProps> = ({ characters }) => {
   if (characters.length === 0) {
     return null
   }
-  
+
   return (
     characters && (
       <div className={styles.container}>
         {characters.map((item) => (
           <SingleCharacter
+            data-testid='character'
             key={item.id}
             name={item.name}
             description={item.description}

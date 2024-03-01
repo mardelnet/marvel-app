@@ -37,8 +37,10 @@ const SearchForm: React.FC<SearchFormProps> = ({
 }) => {
   return (
     <div className={styles.searchform}>
-      <h1>Search your character</h1>
-      <form onSubmit={handleSubmit}>
+      <h1>
+        <label htmlFor='textInput'>Search your character</label>
+      </h1>
+      <form onSubmit={handleSubmit} data-testid='search-form'>
         <input
           type='text'
           id='textInput'

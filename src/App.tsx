@@ -132,6 +132,7 @@ const App: React.FC = () => {
           buttonLabel='Load More'
           onClick={() => getMarvelCharacters()}
           icon={<FontAwesomeIcon icon={faArrowRight} />}
+          data-testid='load-more-button'
         />
       )}
 

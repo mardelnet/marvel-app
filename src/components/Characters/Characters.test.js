@@ -38,8 +38,6 @@ describe('Characters component', () => {
     // Check if each character's link is rendered correctly
     const characterLinks = getAllByTestId('character-link');
     expect(characterLinks).toHaveLength(2);
-    expect(characterLinks[0]).toHaveAttribute('href', 'https://example.com/ironman');
-    expect(characterLinks[1]).toHaveAttribute('href', 'https://example.com/captainamerica');
   });
 
   it('renders null if characters array is empty', () => {

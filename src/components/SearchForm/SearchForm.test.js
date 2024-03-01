@@ -48,22 +48,16 @@ describe('SearchForm component', () => {
   });
 
   it('calls handleInputChange function when input value changes', () => {
-    const handleSubmit = jest.fn();
-    const handleInputChange = jest.fn();
-    const textInput = '';
+    const handleInputChange = jest.fn(); // Mock function
 
     const { getByPlaceholderText } = render(
-      <SearchForm
-        handleSubmit={handleSubmit}
-        handleInputChange={handleInputChange}
-        textInput={textInput}
-      />
+      <SearchForm handleInputChange={handleInputChange} />
     );
 
+    const inputElement = getByPlaceholderText('Name of character');
+
     // Simulate input change
-    fireEvent.change(getByPlaceholderText('Name of character'), {
-      target: { value: 'Iron Man' },
-    });
+    fireEvent.change(inputElement, { target: { value: 'Iron Man' } });
 
     // Check if handleInputChange function is called with the correct value
     expect(handleInputChange).toHaveBeenCalledWith(expect.objectContaining({

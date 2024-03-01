@@ -30,6 +30,10 @@ interface CharactersProps {
  * @returns {JSX.Element | null} - Rendered Characters component or null if characters array is empty.
  */
 const Characters: React.FC<CharactersProps> = ({ characters }) => {
+  if (characters.length === 0) {
+    return null;
+  }
+  
   return (
     characters && (
       <div className={styles.container}>

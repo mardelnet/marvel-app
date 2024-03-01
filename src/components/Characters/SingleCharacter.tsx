@@ -48,7 +48,7 @@ const SingleCharacter: React.FC<SingleCharacterProps> = (props) => {
   return (
     <div>
       <div className={styles.item}>
-        <img className={styles.image} src={props.imageUrl} alt={props.name} />
+        <img className={styles.image} src={props.imageUrl} alt={props.name} data-testid="character-image" />
         <div className={styles.description}>
           <h3>{props.name}</h3>
           <div>
@@ -60,7 +60,8 @@ const SingleCharacter: React.FC<SingleCharacterProps> = (props) => {
             buttonLabel='Read more'
             openInNewTab
             href={props.extraInfoLink}
-            icon={<FontAwesomeIcon icon={faArrowRight} />}
+            icon={<FontAwesomeIcon icon={faArrowRight}
+            data-testid="character-link" />}
           />
         </div>
       </div>

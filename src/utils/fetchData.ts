@@ -1,9 +1,4 @@
-import {
-  privateKey,
-  apiKey,
-  baseUrl,
-  endpoints,
-} from '../constants/marvelApi.ts'
+import { apiKey, baseUrl, endpoints } from '../constants/marvelApi.ts'
 
 /**
  * Fetches characters from the Marvel Comics API.
@@ -39,7 +34,15 @@ export const getData = async (url: URL) => {
 
   const ts = new Date().getTime()
 
-  const hash = md5(ts + privateKey + apiKey)
+  const secretKey = process.env.REACT_APP_MARVEL_API_SECRET
+
+  if (!secretKey) {
+    throw new Error(
+      'REACT_APP_MARVEL_API_SECRET is not defined in the environment.'
+    )
+  }
+
+  const hash = md5(ts + secretKey + apiKey)
 
   const params = {
     apikey: apiKey,

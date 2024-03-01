@@ -9,11 +9,11 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended", // Added TypeScript recommended rules
+    "plugin:@typescript-eslint/recommended",
     "prettier",
     "plugin:prettier/recommended"
   ],
-  "parser": "@typescript-eslint/parser", // Added TypeScript parser
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module"
@@ -22,16 +22,16 @@
     "react",
     "react-hooks",
     "prettier",
-    "@typescript-eslint" // Added TypeScript plugin
+    "@typescript-eslint"
   ],
   "rules": {
     "react/prop-types": "off",
     "prettier/prettier": ["error"],
-    "@typescript-eslint/explicit-module-boundary-types": "off" // Optional: Disable explicit module boundary types if you don't want to specify them for all functions
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   },
   "settings": {
     "react": {
-      "version": "detect" // Automatically detect the version of React for linting
+      "version": "detect"
     }
-  },
+  }
 }

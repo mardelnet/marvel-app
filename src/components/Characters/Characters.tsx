@@ -31,7 +31,7 @@ interface CharactersProps {
  */
 const Characters: React.FC<CharactersProps> = ({ characters }) => {
   if (characters.length === 0) {
-    return null;
+    return null
   }
   
   return (

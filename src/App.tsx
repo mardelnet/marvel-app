@@ -15,6 +15,12 @@ interface Character {
   thumbnail: { path: string; extension: string }
 }
 
+interface CharactersData {
+  data: {
+    results: Character[]
+  }
+}
+
 const App: React.FC = () => {
   const limitOfCharacters = 6
   const [characters, setCharacters] = useState<Character[]>([])
@@ -24,7 +30,7 @@ const App: React.FC = () => {
 
   const getMarvelCharacters = async (search = false) => {
     try {
-      let charactersData: any[] = []
+      let charactersData: CharactersData
       setIsLoading(true)
 
       if (search) {

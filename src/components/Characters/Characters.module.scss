@@ -1,8 +1,9 @@
 .container {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(1, calc(100%));
   gap: 30px;
   overflow-x: hidden;
+  margin-bottom: 50px;
 }
 
 /* For tablets (min-width: 768px) */

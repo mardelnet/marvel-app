@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './Footer.module.scss'
 
 /**
  * Footer component.
@@ -7,7 +8,9 @@ import React from 'react'
  */
 const Footer: React.FC = () => {
   return (
-    <div>Data provided by Marvel. &copy; {new Date().getFullYear()} MARVEL</div>
+    <div className={styles.footer}>
+      Data provided by Marvel. &copy; {new Date().getFullYear()} MARVEL
+    </div>
   )
 }
 

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { getCharacters, getSingleCharacter } from './utils/fetchData.ts'
 
 import Characters from './components/Characters/Characters.tsx'
@@ -125,7 +127,12 @@ const App: React.FC = () => {
       {characters.length > 0 && <Characters characters={characters} />}
 
       {!isLoading && (
-        <Button buttonLabel='Load More' onClick={() => getMarvelCharacters()} />
+        <Button
+          inverted
+          buttonLabel='Load More'
+          onClick={() => getMarvelCharacters()}
+          icon={<FontAwesomeIcon icon={faArrowRight} />}
+        />
       )}
 
       <Footer />

@@ -1,4 +1,5 @@
 import React from 'react'
+import classNames from 'classnames'
 import styles from './Button.module.scss'
 
 /**
@@ -11,14 +12,29 @@ interface ButtonProps {
   buttonLabel: string
 
   /**
-   * Optional icon URL for the button.
+   * Optional icon for the button.
    */
-  icon?: string
+  icon?: React.ReactNode
 
   /**
    * Function to handle button click event.
    */
   onClick?: () => void
+
+  /**
+   * Whether the button colors are inverted.
+   */
+  inverted?: boolean
+
+  /**
+   * Whether to open the link in a new tab.
+   */
+  openInNewTab?: boolean
+
+  /**
+   * The URL of the link. Required if openInNewTab is true.
+   */
+  href?: string
 }
 
 /**
@@ -27,14 +43,46 @@ interface ButtonProps {
  * @param {ButtonProps} props - Props for the Button component.
  * @returns {JSX.Element} - Rendered Button component.
  */
-function Button({ buttonLabel, icon, onClick }: ButtonProps) {
+function Button({
+  buttonLabel,
+  icon,
+  onClick,
+  inverted,
+  openInNewTab,
+  href,
+}: ButtonProps) {
+  const buttonClasses = classNames(styles.button, {
+    [styles.inverted]: inverted,
+  })
+
+  /**
+   * Handles the click event of the button or anchor element.
+   * If openInNewTab is true and href is provided, it opens the link in a new tab.
+   * Otherwise, it executes the onClick handler if provided.
+   * @param {React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>} event - The click event.
+   */
+  const handleClick = (
+    event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>
+  ) => {
+    if (openInNewTab && href) {
+      window.open(href, '_blank')
+    } else if (onClick) {
+      onClick()
+    }
+  }
+
+  const ButtonElement = href ? 'a' : 'button'
+
   return (
-    <button className='button' onClick={onClick}>
+    <ButtonElement
+      className={buttonClasses}
+      onClick={handleClick}
+      href={href}
+      target={openInNewTab ? '_blank' : undefined}
+    >
       {buttonLabel}
-      {icon && (
-        <img className={styles['button__icon']} src={icon} alt={buttonLabel} />
-      )}
-    </button>
+      {icon && icon}
+    </ButtonElement>
   )
 }
 

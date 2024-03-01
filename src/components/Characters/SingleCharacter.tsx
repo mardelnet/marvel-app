@@ -1,6 +1,8 @@
 import React from 'react'
 import Button from '../Button/Button.tsx'
 import styles from './SingleCharacters.module.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 /**
  * Props interface for the SingleCharacter component.
@@ -54,7 +56,12 @@ const SingleCharacter: React.FC<SingleCharacterProps> = (props) => {
               ? filterDescription(props.description)
               : '(No description available)'}
           </div>
-          <Button buttonLabel='Read more' icon='/icon_arrow.svg' />
+          <Button
+            buttonLabel='Read more'
+            openInNewTab
+            href={props.extraInfoLink}
+            icon={<FontAwesomeIcon icon={faArrowRight} />}
+          />
         </div>
       </div>
     </div>

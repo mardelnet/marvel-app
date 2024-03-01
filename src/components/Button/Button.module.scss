@@ -1,4 +1,43 @@
-.button__icon {
-  width: 20px;
-  height: auto;
+@mixin regular-colors {
+  background-color: #666;
+  color: white;
+}
+
+@mixin inverted-colors {
+  background-color: white;
+  color: #666;
+}
+
+.button {
+  @include regular-colors;
+  border-radius: 5px;
+  border: 3px solid #666;
+  padding: 10px 15px;
+  margin: 0px auto;
+  display: block;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  width: fit-content;
+  text-decoration: none;
+
+  &:hover {
+    @include inverted-colors;
+  }
+
+  &.inverted {
+    @include inverted-colors;
+
+    &:hover {
+      @include regular-colors;
+    }
+  }
+
+  svg {
+    margin-left: 5px;
+    width: 12px;
+    height: auto;
+    position: relative;
+    top: -1px;
+  }
 }

@@ -12,22 +12,22 @@
     height: 180px;
     font-size: 17px;
     font-weight: 600;
-  }
 
-  h3 {
-    margin: 0 0 20px;
-    color: #444;
-    font-size: 25px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 100%;
-  }
-
-  button {
-    position: absolute;
-    bottom: 25px;
-    right: 25px;
+    h3 {
+      margin: 0 0 20px;
+      color: #444;
+      font-size: 25px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 100%;
+    }
+  
+    a {
+      position: absolute;
+      bottom: 25px;
+      right: 25px;
+    }
   }
 
   .image {

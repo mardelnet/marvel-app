@@ -85,7 +85,7 @@ const App: React.FC = () => {
       {characters.length > 0 && <Characters characters={characters} />}
 
       {!isLoading && (
-        <Button buttonLabel='Load More' onClick={getMarvelCharacters} />
+        <Button buttonLabel='Load More' onClick={() => getMarvelCharacters()} />
       )}
 
       <Footer />

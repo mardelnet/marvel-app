@@ -1,4 +1,4 @@
-import { getCharacters, getSingleCharacter } from './utils/fetchData'
+import { getSingleCharacter } from './utils/fetchData'
 import React from 'react'
 import { render, fireEvent, waitFor } from '@testing-library/react'
 import App from './App'

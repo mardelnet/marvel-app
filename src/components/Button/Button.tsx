@@ -61,9 +61,7 @@ function Button({
    * Otherwise, it executes the onClick handler if provided.
    * @param {React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>} event - The click event.
    */
-  const handleClick = (
-    event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>
-  ) => {
+  const handleClick = () => {
     if (openInNewTab && href) {
       window.open(href, '_blank')
     } else if (onClick) {

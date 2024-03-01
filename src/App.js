@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { getCharacters, getSingleCharacter } from './utils/fetchData'
 
-import Characters from './components/Characters/Characters.tsx'
-import Footer from './components/Footer/Footer.tsx'
-import SearchForm from './components/SearchForm/SearchForm.tsx'
-import Button from './components/Button/Button.tsx'
-import Loader from './components/Loader/Loader.tsx'
+import Characters from './components/Characters/Characters'
+import Footer from './components/Footer/Footer'
+import SearchForm from './components/SearchForm/SearchForm'
+import Button from './components/Button/Button'
+import Loader from './components/Loader/Loader'
 
 function App() {
   const limitOfCharacters = 6
@@ -79,7 +79,7 @@ function App() {
       {characters && <Characters characters={characters} />}
 
       {!isLoading && (
-        <Button buttonLabel='Load More' onClick={() => getMarvelCharacters()} />
+        <Button buttonLabel='Load More' onClick={getMarvelCharacters} />
       )}
 
       <Footer />

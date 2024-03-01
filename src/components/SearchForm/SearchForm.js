@@ -1,18 +1,8 @@
-import React from 'react';
-import styles from './SearchForm.module.scss';
-import MySVG from './icon_search.svg';
+import React from 'react'
+import styles from './SearchForm.module.scss'
+import MySVG from './icon_search.svg'
 
-interface SearchFormProps {
-  handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-  handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  textInput: string;
-}
-
-const SearchForm: React.FC<SearchFormProps> = ({
-  handleSubmit,
-  handleInputChange,
-  textInput,
-}) => {
+function SearchForm({ handleSubmit, handleInputChange, textInput }) {
   return (
     <div className={styles.searchform}>
       <h1>Search your character</h1>
@@ -31,7 +21,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
         </button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default SearchForm;
+export default SearchForm

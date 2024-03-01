@@ -1,17 +1,17 @@
 @mixin regular-colors {
-  background-color: #666;
-  color: white;
+  background-color: var(--grey-color);
+  color: var(--white-color);
 }
 
 @mixin inverted-colors {
-  background-color: white;
-  color: #666;
+  background-color: var(--white-color);
+  color: var(--grey-color);
 }
 
 .button {
   @include regular-colors;
   border-radius: 5px;
-  border: 3px solid #666;
+  border: 3px solid var(--grey-color);
   padding: 10px 20px;
   margin: 0px auto;
   display: block;

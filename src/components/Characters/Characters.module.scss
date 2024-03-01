@@ -4,18 +4,14 @@
   gap: 30px;
   overflow-x: hidden;
   margin-bottom: 50px;
-}
 
-/* For tablets (min-width: 768px) */
-@media (min-width: 768px) {
-  .container {
+  /* For tablets (min-width: 768px) */
+  @media (min-width: 768px) {
     grid-template-columns: repeat(2, calc(50% - 10px));
   }
-}
 
-/* For desktops (min-width: 1024px) */
-@media (min-width: 1024px) {
-  .container {
+  /* For desktops (min-width: 1024px) */
+  @media (min-width: 1024px) {
     grid-template-columns: repeat(3, calc(33.33% - 20px));
   }
 }

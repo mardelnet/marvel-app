@@ -1,6 +1,6 @@
 .loader-container {
   padding: 10px;
-  background-color: white;
+  background-color: var(--white-color);
   display: inline-block;
   position: fixed;
   z-index: 999;
@@ -12,7 +12,7 @@
   &__loader {
     width: 48px;
     height: 48px;
-    border: 5px solid #333;
+    border: 5px solid var(--dark-grey-color);
     border-bottom-color: transparent;
     border-radius: 50%;
     display: inline-block;

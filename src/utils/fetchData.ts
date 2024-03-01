@@ -1,4 +1,9 @@
-import { privateKey, apiKey, baseUrl, endpoints } from '../constants/marvelApi'
+import {
+  privateKey,
+  apiKey,
+  baseUrl,
+  endpoints,
+} from '../constants/marvelApi.ts'
 
 export const getCharacters = async (limit: number, offset: number) => {
   const url = new URL(

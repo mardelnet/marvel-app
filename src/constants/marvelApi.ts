@@ -4,6 +4,6 @@ export const privateKey = '2f24398f5a8c822633e65df8946dff98902bc076'
 
 export const baseUrl = 'http://gateway.marvel.com/'
 
-export const endpoints = {
+export const endpoints: Record<string, string> = {
   characters: 'v1/public/characters',
 }
